@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e623683693ba2244b8bc37a778747d7, type: 3}
+  m_Name: Configuration
+  m_EditorClassIdentifier: Assembly-CSharp:SymmetricalOctoEureka:Configuration
+  buttonPrefab: {fileID: 3155536017844540044, guid: 8e18ee2d28e0a824f8ee2b0798a5d20a, type: 3}
+  cardPrefab: {fileID: 6715468293936241991, guid: 66328813e9b4bd34ea21791436d1fc80, type: 3}
+  cardFrontSprites:
+  - {fileID: 21300000, guid: 408bb48080167d24fa3b1d208563106a, type: 3}
+  - {fileID: 21300000, guid: d12d326ae42aa1c4e83007dd1b31b24e, type: 3}
+  - {fileID: 21300000, guid: c287cb5eb550b764d87fb6f10515159f, type: 3}
+  - {fileID: 21300000, guid: 43741f9d344d9db4c9d7ccb8d5572a98, type: 3}
+  - {fileID: 21300000, guid: fdb34245304955546a662f2f64357acc, type: 3}
+  - {fileID: 21300000, guid: af1dff87c6d87764ebad78410262cf67, type: 3}
+  - {fileID: 21300000, guid: d9c69e0e640962741b64bd1d9e16899a, type: 3}
+  - {fileID: 21300000, guid: 9d0ea1cbf27b305478886c9906d21dac, type: 3}
+  - {fileID: 21300000, guid: b9f52c8e444225042b323f90ce7651f7, type: 3}
+  - {fileID: 21300000, guid: b341f9508c8cae04cbd0e41b4de68285, type: 3}
+  - {fileID: 21300000, guid: e863a446c2c5bca4b8b621a95094a0f1, type: 3}
+  - {fileID: 21300000, guid: 01084b8957929354494f6c64d7fccd56, type: 3}
+  - {fileID: 21300000, guid: 0c4fb7309accd844385352caa48995d2, type: 3}
+  - {fileID: 21300000, guid: bd9393d8ed54c3e43be390b6f4179708, type: 3}
+  - {fileID: 21300000, guid: 3f0d7f7a1aa09ae40b333098b8737461, type: 3}
+  - {fileID: 21300000, guid: 8e8a6a85631117e4a8513db8bdb38135, type: 3}
+  - {fileID: 21300000, guid: ff2583a53ef3d924d9faadf85275110f, type: 3}
+  - {fileID: 21300000, guid: 2ac50b0fe11b74c478383e2f400d98fa, type: 3}
+  - {fileID: 21300000, guid: b29d721cfb958884bbcde02684af3549, type: 3}
+  - {fileID: 21300000, guid: a0af895c593804a4aa69fd611b19330e, type: 3}
+  - {fileID: 21300000, guid: 9c7e8f3f5856f3840a5c810faa9d4273, type: 3}
+  - {fileID: 21300000, guid: 7c23d1dd33627064db515131dae9f173, type: 3}
+  - {fileID: 21300000, guid: 8e10558464ae7324391deb8e2a3dfe9e, type: 3}
+  - {fileID: 21300000, guid: f14cb6e7d8b77334eb0cbf90bd107c1e, type: 3}
+  - {fileID: 21300000, guid: 1788a647cf57bd246b5a80196fcd4bc3, type: 3}
+  - {fileID: 21300000, guid: f4709556c32d6c34fbc8ee8ba0549bda, type: 3}
+  - {fileID: 21300000, guid: a0143ddc7634ea24ba9a2a7a04aadf44, type: 3}
+  - {fileID: 21300000, guid: c2d91d08567334947a57393a23d2d171, type: 3}
+  - {fileID: 21300000, guid: 1465e15c8e60dd24b852f217d9d27963, type: 3}
+  - {fileID: 21300000, guid: c955abd458907194a8322da74e9f91c8, type: 3}
+  cardBackSprite: {fileID: 21300000, guid: 43558be8459ba2d42b4f97797e4bb2bc, type: 3}
+  cardFlipSound: {fileID: 0}
+  matchSound: {fileID: 0}
+  mismatchSound: {fileID: 0}
+  gameOverSound: {fileID: 0}
+  initialPeekDuration: 2
+  matchDelay: 1
+  mismatchDelay: 1
+  soundVolume: 0.7
+  difficultyLevels:
+  - name: Easy
+    rows: 3
+    columns: 4
+  - name: Normal
+    rows: 4
+    columns: 5
+  - name: Hard
+    rows: 4
+    columns: 6
+  - name: Expert
+    rows: 5
+    columns: 8
+  - name: Insane
+    rows: 6
+    columns: 10
