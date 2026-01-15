@@ -78,7 +78,7 @@ namespace SymmetricalOctoEureka
 
             if (gameState.IsCardMatched (cardId))
             {
-                card.MarkAsMatched ();
+                card.SetMatched ();
             }
 
             spawnedCards.Add (card);

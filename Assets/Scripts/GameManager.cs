@@ -137,8 +137,8 @@ namespace SymmetricalOctoEureka
         {
             yield return new WaitForSeconds (configuration.matchDelay);
 
-            firstSelectedCard.MarkAsMatched ();
-            secondSelectedCard.MarkAsMatched ();
+            firstSelectedCard.SetMatched ();
+            secondSelectedCard.SetMatched ();
 
             currentGameState.AddMatchedCard (firstSelectedCard.Id);
             currentGameState.AddMatchedCard (secondSelectedCard.Id);
@@ -153,8 +153,8 @@ namespace SymmetricalOctoEureka
         {
             yield return new WaitForSeconds (configuration.mismatchDelay);
 
-            firstSelectedCard.SetFaceDown ();
-            secondSelectedCard.SetFaceDown ();
+            firstSelectedCard.Shake ();
+            secondSelectedCard.Shake ();
 
             currentGameState.streak = 0;
 
@@ -163,9 +163,12 @@ namespace SymmetricalOctoEureka
 
         private void GameOver ()
         {
-            gameOverPanel.SetActive (true);
+            if (!gameOverPanel.activeSelf)
+            {
+                gameOverPanel.SetActive (true);
 
-            audioSource.PlayOneShot (configuration.gameOverSound, configuration.soundVolume);
+                audioSource.PlayOneShot (configuration.gameOverSound, configuration.soundVolume);
+            }
         }
 
         private void ResetGame ()

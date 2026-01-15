@@ -20,12 +20,18 @@ namespace SymmetricalOctoEureka
         public AudioClip gameOverSound;
 
         [Header ("Settings")]
-        [Range (1f, 5f)] public float initialPeekDelay = 1f;
-        [Range (1f, 5f)] public float initialPeekDuration = 2f;
-        [Range (1f, 5f)] public float matchDelay = 1f;
-        [Range (1f, 5f)] public float mismatchDelay = 1f;
-        [Range (1f, 5f)] public float gameOverDelay = 1f;
+        [Range (0f, 5f)] public float initialPeekDelay = 1f;
+        [Range (0f, 5f)] public float initialPeekDuration = 2f;
+        [Range (0f, 5f)] public float matchDelay = 1f;
+        [Range (0f, 5f)] public float mismatchDelay = 1f;
+        [Range (0f, 5f)] public float gameOverDelay = 1f;
         [Range (0f, 1f)] public float soundVolume = 0.7f;
+
+        [Header ("Animation")]
+        public float flipDuration = 0.15f;
+        public float scaleDuration = 0.3f;
+        public float shakeDuration = 0.5f;
+        public float shakeStrength = 10f;
 
         [Header ("Difficulty")]
         public DifficultyLevel [] difficultyLevels = new []
