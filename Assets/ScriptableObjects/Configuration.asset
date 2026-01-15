@@ -46,10 +46,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1465e15c8e60dd24b852f217d9d27963, type: 3}
   - {fileID: 21300000, guid: c955abd458907194a8322da74e9f91c8, type: 3}
   cardBackSprite: {fileID: 21300000, guid: 43558be8459ba2d42b4f97797e4bb2bc, type: 3}
-  cardFlipSound: {fileID: 0}
-  matchSound: {fileID: 0}
-  mismatchSound: {fileID: 0}
-  gameOverSound: {fileID: 0}
+  cardFlipSound: {fileID: 8300000, guid: 9b0bb154204229f4c80b8f30d8cd48fb, type: 3}
+  matchSound: {fileID: 8300000, guid: eeb6d441c11820546b7f922a762034d4, type: 3}
+  mismatchSound: {fileID: 8300000, guid: 9d2a0562cf8c8fa48a881017c260f478, type: 3}
+  gameOverSound: {fileID: 8300000, guid: bc915ced60b66254b8bdbe3966de5b6c, type: 3}
   initialPeekDuration: 2
   matchDelay: 1
   mismatchDelay: 1

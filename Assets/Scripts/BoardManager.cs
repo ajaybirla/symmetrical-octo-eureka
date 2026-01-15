@@ -71,11 +71,10 @@ namespace SymmetricalOctoEureka
         private void SpawnCard (int index, GameState gameState)
         {
             int cardId = gameState.layoutCardIds [index];
-            Sprite cardSprite = configuration.cardFrontSprites [cardId];
 
             GameObject cardObject = Instantiate (configuration.cardPrefab, gridLayout.transform);
             Card card = cardObject.GetComponent<Card> ();
-            card.Initialize (cardId, cardSprite);
+            card.Initialize (cardId);
 
             if (gameState.IsCardMatched (index))
             {

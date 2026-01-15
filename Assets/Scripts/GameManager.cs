@@ -21,6 +21,9 @@ namespace SymmetricalOctoEureka
         [Header ("Buttons")]
         [SerializeField] private Button backButton;
 
+        [Header ("AudioSources")]
+        [SerializeField] private AudioSource audioSource;
+
         [Header ("BoardManager")]
         [SerializeField] private BoardManager boardManager;
 
@@ -75,7 +78,7 @@ namespace SymmetricalOctoEureka
         {
             canInteract = false;
 
-            yield return new WaitForSeconds (1f);
+            yield return new WaitForSeconds (configuration.initialPeekDelay);
 
             boardManager.SetAllFaceUp ();
 
@@ -128,6 +131,12 @@ namespace SymmetricalOctoEureka
 
             UpdateTexts ();
 
+            firstSelectedCard = null;
+            secondSelectedCard = null;
+            canInteract = true;
+
+            yield return new WaitForSeconds (configuration.gameOverDelay);
+
             if (currentGameState.IsGameComplete)
             {
                 GameOver ();
@@ -136,10 +145,6 @@ namespace SymmetricalOctoEureka
             {
                 SaveGame ();
             }
-
-            firstSelectedCard = null;
-            secondSelectedCard = null;
-            canInteract = true;
         }
 
         private IEnumerator ProcessMatchedCards ()
@@ -154,6 +159,8 @@ namespace SymmetricalOctoEureka
             currentGameState.matches += 1;
             currentGameState.streak += 1;
             currentGameState.score += currentGameState.streak;
+
+            audioSource.PlayOneShot (configuration.matchSound, configuration.soundVolume);
         }
 
         private IEnumerator ProcessMismatchedCards ()
@@ -164,11 +171,15 @@ namespace SymmetricalOctoEureka
             secondSelectedCard.SetFaceDown ();
 
             currentGameState.streak = 0;
+
+            audioSource.PlayOneShot (configuration.mismatchSound, configuration.soundVolume);
         }
 
         private void GameOver ()
         {
             gameOverPanel.SetActive (true);
+
+            audioSource.PlayOneShot (configuration.gameOverSound, configuration.soundVolume);
         }
 
         private void SaveGame ()

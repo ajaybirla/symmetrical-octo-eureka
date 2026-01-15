@@ -13,15 +13,21 @@ namespace SymmetricalOctoEureka
         [Header ("Buttons")]
         [SerializeField] private Button button;
 
+        [Header ("AudioSources")]
+        [SerializeField] private AudioSource audioSource;
+
+        [Header ("Configuration")]
+        [SerializeField] private Configuration configuration;
+
         public int Id { get; private set; }
 
         public event Action<Card> OnCardClicked;
 
-        public void Initialize (int id, Sprite frontSprite)
+        public void Initialize (int id)
         {
             name = $"Card_{id}";
             Id = id;
-            frontImage.sprite = frontSprite;
+            frontImage.sprite = configuration.cardFrontSprites [id];
             button.onClick.AddListener (OnButtonClicked);
 
             SetFaceDown ();
@@ -41,6 +47,8 @@ namespace SymmetricalOctoEureka
         {
             frontImage.gameObject.SetActive (true);
             backImage.gameObject.SetActive (false);
+
+            audioSource.PlayOneShot (configuration.cardFlipSound, configuration.soundVolume);
         }
 
         public void SetFaceDown ()
