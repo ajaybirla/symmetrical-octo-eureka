@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 namespace SymmetricalOctoEureka
 {
@@ -15,17 +16,23 @@ namespace SymmetricalOctoEureka
 
         private List<Card> spawnedCards = new List<Card> ();
 
-        public void SetupBoard (GameState gameState)
+        public void SetupBoard (GameState gameState, Action<Card> onCardClicked)
         {
-            ClearBoard ();
             ConfigureGrid (gameState.rows, gameState.columns);
             SpawnCards (gameState);
+
+            foreach (Card card in spawnedCards)
+            {
+                card.OnCardClicked += onCardClicked;
+            }
         }
 
-        private void ClearBoard ()
+        public void ClearBoard (Action<Card> onCardClicked)
         {
             foreach (Card card in spawnedCards)
             {
+                card.OnCardClicked -= onCardClicked;
+
                 Destroy (card.gameObject);
             }
 
@@ -70,7 +77,28 @@ namespace SymmetricalOctoEureka
             Card card = cardObject.GetComponent<Card> ();
             card.Initialize (cardId, cardSprite);
 
+            if (gameState.IsCardMatched (index))
+            {
+                card.MarkAsMatched ();
+            }
+
             spawnedCards.Add (card);
+        }
+
+        public void SetAllFaceUp ()
+        {
+            foreach (Card card in spawnedCards)
+            {
+                card.SetFaceUp ();
+            }
+        }
+
+        public void SetAllFaceDown ()
+        {
+            foreach (Card card in spawnedCards)
+            {
+                card.SetFaceDown ();
+            }
         }
     }
 }

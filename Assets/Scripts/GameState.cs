@@ -10,20 +10,20 @@ namespace SymmetricalOctoEureka
         public int columns;
         public int turns;
         public int matches;
+        public int streak;
+        public int score;
         public List<int> layoutCardIds = new List<int> ();
         public List<int> matchedCardIds = new List<int> ();
 
         public int TotalCards => rows * columns;
         public int TotalPairs => TotalCards / 2;
+        public bool IsGameComplete => matches >= TotalPairs;
+        public bool IsGameRunning => turns > 0 && !IsGameComplete;
 
         public GameState (int rows, int columns)
         {
             this.rows = rows;
             this.columns = columns;
-            this.turns = 0;
-            this.matches = 0;
-            this.layoutCardIds = new List<int> ();
-            this.matchedCardIds = new List<int> ();
 
             GenerateRandomLayout ();
         }
@@ -57,6 +57,19 @@ namespace SymmetricalOctoEureka
                 layoutCardIds [i] = layoutCardIds [randomIndex];
                 layoutCardIds [randomIndex] = temp;
             }
+        }
+
+        public void AddMatchedCard (int cardId)
+        {
+            if (!matchedCardIds.Contains (cardId))
+            {
+                matchedCardIds.Add (cardId);
+            }
+        }
+
+        public bool IsCardMatched (int cardId)
+        {
+            return matchedCardIds.Contains (cardId);
         }
     }
 }
