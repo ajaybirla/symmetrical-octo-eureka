@@ -41,6 +41,11 @@ namespace SymmetricalOctoEureka
 
         private void ConfigureGrid (int rows, int columns)
         {
+            float spacingFactor = 3f / Mathf.Max (rows, columns);
+            float dynamicSpacing = Mathf.Clamp (50f * spacingFactor, 10f, 50f);
+
+            gridLayout.spacing = new Vector2 (dynamicSpacing, dynamicSpacing);
+
             float availableWidth = boardRectTransform.rect.width;
             float availableHeight = boardRectTransform.rect.height;
 

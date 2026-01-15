@@ -56,6 +56,10 @@ MonoBehaviour:
   mismatchDelay: 0.3
   gameOverDelay: 1
   soundVolume: 0.5
+  flipDuration: 0.15
+  scaleDuration: 0.3
+  shakeDuration: 0.5
+  shakeStrength: 10
   difficultyLevels:
   - name: Easy
     rows: 2
