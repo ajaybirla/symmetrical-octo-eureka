@@ -1,52 +1,66 @@
+using TMPro;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.UI;
 
 namespace SymmetricalOctoEureka
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private List<Card> allCards;
+        [Header ("Panels")]
+        [SerializeField] private GameObject mainPanel;
+        [SerializeField] private GameObject gamePanel;
 
-        private Card firstSelected;
-        private Card secondSelected;
+        [Header ("BoardManager")]
+        [SerializeField] private BoardManager boardManager;
 
-        public bool CanClick { get; private set; } = true;
+        [Header ("Texts")]
+        [SerializeField] private TMP_Text turnsText;
+        [SerializeField] private TMP_Text matchesText;
+        [SerializeField] private TMP_Text streakText;
+        [SerializeField] private TMP_Text scoreText;
 
-        public void CardFlipped (Card card)
+        [Header ("Buttons")]
+        [SerializeField] private Button backButton;
+        [SerializeField] private Button restartButton;
+
+        public void StartNewGame (int rows, int columns)
         {
-            if (firstSelected == null)
-            {
-                firstSelected = card;
-            }
-            else
-            {
-                secondSelected = card;
-                StartCoroutine (CheckMatch ());
-            }
+            GameState newGameState = new GameState (rows, columns);
+
+            boardManager.SetupBoard (newGameState);
         }
 
-        IEnumerator CheckMatch ()
+        public void LoadSavedGame ()
         {
-            CanClick = false;
 
-            if (firstSelected.CardID == secondSelected.CardID)
-            {
-                firstSelected = null;
-                secondSelected = null;
-            }
-            else
-            {
-                yield return new WaitForSeconds (1f);
+        }
 
-                firstSelected.Flip ();
-                secondSelected.Flip ();
+        private void Start ()
+        {
+            backButton.onClick.AddListener (OnBackButtonClicked);
+            restartButton.onClick.AddListener (OnRestartButtonClicked);
+        }
 
-                firstSelected = null;
-                secondSelected = null;
-            }
+        private void OnDestroy ()
+        {
+            backButton.onClick.RemoveListener (OnBackButtonClicked);
+            restartButton.onClick.AddListener (OnRestartButtonClicked);
+        }
 
-            CanClick = true;
+        private void OnBackButtonClicked ()
+        {
+            SwitchToMainMenu ();
+        }
+
+        private void OnRestartButtonClicked ()
+        {
+
+        }
+
+        private void SwitchToMainMenu ()
+        {
+            mainPanel.SetActive (true);
+            gamePanel.SetActive (false);
         }
     }
 }

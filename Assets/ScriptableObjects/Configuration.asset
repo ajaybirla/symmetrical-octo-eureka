@@ -56,17 +56,17 @@ MonoBehaviour:
   soundVolume: 0.7
   difficultyLevels:
   - name: Easy
+    rows: 2
+    columns: 3
+  - name: Normal
     rows: 3
     columns: 4
-  - name: Normal
-    rows: 4
-    columns: 5
   - name: Hard
     rows: 4
-    columns: 6
+    columns: 5
   - name: Expert
     rows: 5
-    columns: 8
+    columns: 6
   - name: Insane
     rows: 6
-    columns: 10
+    columns: 7

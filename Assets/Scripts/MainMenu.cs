@@ -14,6 +14,9 @@ namespace SymmetricalOctoEureka
         [SerializeField] private Transform buttonsParent;
         [SerializeField] private Button continueButton;
 
+        [Header ("GameManager")]
+        public GameManager gameManager;
+
         [Header ("Configuration")]
         public Configuration configuration;
 
@@ -46,11 +49,15 @@ namespace SymmetricalOctoEureka
         private void OnDifficultySelected (DifficultyLevel difficultyLevel)
         {
             SwitchToGameplay ();
+
+            gameManager.StartNewGame (difficultyLevel.rows, difficultyLevel.columns);
         }
 
         private void OnContinueButtonClicked ()
         {
             SwitchToGameplay ();
+
+            gameManager.LoadSavedGame ();
         }
 
         private void SwitchToGameplay ()

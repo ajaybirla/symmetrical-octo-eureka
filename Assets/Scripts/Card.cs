@@ -5,35 +5,20 @@ namespace SymmetricalOctoEureka
 {
     public class Card : MonoBehaviour
     {
-        [SerializeField] private int cardID;
-        [SerializeField] private Image cardFront;
-        [SerializeField] private Image cardBack;
+        [Header ("Images")]
+        [SerializeField] public Image frontImage;
+        [SerializeField] private Image backImage;
+
+        [Header ("Buttons")]
         [SerializeField] private Button button;
-        [SerializeField] GameManager gameManager;
 
-        public int CardID => cardID;
+        public int Id { get; private set; }
 
-        private void Start ()
+        public void Initialize (int id, Sprite frontSprite)
         {
-            button.onClick.AddListener (OnCardClicked);
-
-            cardFront.gameObject.SetActive (false);
-            cardBack.gameObject.SetActive (true);
-        }
-
-        private void OnCardClicked ()
-        {
-            if (cardFront.gameObject.activeSelf || !gameManager.CanClick) return;
-
-            Flip ();
-            gameManager.CardFlipped (this);
-        }
-
-        public void Flip ()
-        {
-            bool isFlipped = cardFront.gameObject.activeSelf;
-            cardFront.gameObject.SetActive (!isFlipped);
-            cardBack.gameObject.SetActive (isFlipped);
+            name = $"Card_{id}";
+            Id = id;
+            frontImage.sprite = frontSprite;
         }
     }
 }
