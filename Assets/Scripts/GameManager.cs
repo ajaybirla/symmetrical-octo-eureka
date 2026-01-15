@@ -35,23 +35,12 @@ namespace SymmetricalOctoEureka
         private Card secondSelectedCard;
         private bool canInteract;
 
-        public void StartNewGame (int rows, int columns)
+        public void StartGame (GameState gameState)
         {
-            currentGameState = new GameState (rows, columns);
+            currentGameState = gameState;
 
-            InitializeGame ();
-        }
+            currentGameState.Save ();
 
-        public void LoadSavedGame ()
-        {
-            currentGameState = new GameState (3, 4);
-            currentGameState.turns = 4;
-
-            InitializeGame ();
-        }
-
-        private void InitializeGame ()
-        {
             UpdateTexts ();
 
             boardManager.SetupBoard (currentGameState, OnCardClicked);
@@ -131,19 +120,16 @@ namespace SymmetricalOctoEureka
 
             UpdateTexts ();
 
+            currentGameState.Save ();
             firstSelectedCard = null;
             secondSelectedCard = null;
             canInteract = true;
 
             yield return new WaitForSeconds (configuration.gameOverDelay);
 
-            if (currentGameState.IsGameComplete)
+            if (currentGameState.IsGameCompleted)
             {
                 GameOver ();
-            }
-            else
-            {
-                SaveGame ();
             }
         }
 
@@ -180,11 +166,6 @@ namespace SymmetricalOctoEureka
             gameOverPanel.SetActive (true);
 
             audioSource.PlayOneShot (configuration.gameOverSound, configuration.soundVolume);
-        }
-
-        private void SaveGame ()
-        {
-
         }
 
         private void ResetGame ()

@@ -76,7 +76,7 @@ namespace SymmetricalOctoEureka
             Card card = cardObject.GetComponent<Card> ();
             card.Initialize (cardId);
 
-            if (gameState.IsCardMatched (index))
+            if (gameState.IsCardMatched (cardId))
             {
                 card.MarkAsMatched ();
             }

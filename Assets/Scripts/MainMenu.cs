@@ -20,6 +20,8 @@ namespace SymmetricalOctoEureka
         [Header ("Configuration")]
         public Configuration configuration;
 
+        private GameState savedGameState;
+
         private void Start ()
         {
             DifficultyLevel [] difficultyLevels = configuration.difficultyLevels;
@@ -36,9 +38,9 @@ namespace SymmetricalOctoEureka
 
         private void OnEnable ()
         {
-            bool hasSavedGame = PlayerPrefs.HasKey ("SavedGame");
+            savedGameState = GameState.Load ();
 
-            savedGameObj.SetActive (hasSavedGame);
+            savedGameObj.SetActive (savedGameState != null && !savedGameState.IsGameCompleted);
         }
 
         private void OnDestroy ()
@@ -50,14 +52,14 @@ namespace SymmetricalOctoEureka
         {
             SwitchToGameplay ();
 
-            gameManager.StartNewGame (difficultyLevel.rows, difficultyLevel.columns);
+            gameManager.StartGame (new GameState (difficultyLevel.rows, difficultyLevel.columns));
         }
 
         private void OnContinueButtonClicked ()
         {
             SwitchToGameplay ();
 
-            gameManager.LoadSavedGame ();
+            gameManager.StartGame (savedGameState);
         }
 
         private void SwitchToGameplay ()

@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace SymmetricalOctoEureka
 {
@@ -17,8 +17,10 @@ namespace SymmetricalOctoEureka
 
         public int TotalCards => rows * columns;
         public int TotalPairs => TotalCards / 2;
-        public bool IsGameComplete => matches >= TotalPairs;
-        public bool IsGameRunning => turns > 0 && !IsGameComplete;
+        public bool IsGameCompleted => matches >= TotalPairs;
+        public bool IsGameRunning => turns > 0 && !IsGameCompleted;
+
+        private const string SAVE_KEY = "SaveData";
 
         public GameState (int rows, int columns)
         {
@@ -45,7 +47,7 @@ namespace SymmetricalOctoEureka
 
         private void ShuffleLayout ()
         {
-            Random random = new Random ();
+            System.Random random = new System.Random ();
 
             int n = layoutCardIds.Count;
 
@@ -70,6 +72,24 @@ namespace SymmetricalOctoEureka
         public bool IsCardMatched (int cardId)
         {
             return matchedCardIds.Contains (cardId);
+        }
+
+        public static GameState Load ()
+        {
+            if (!PlayerPrefs.HasKey (SAVE_KEY)) return null;
+
+            string json = PlayerPrefs.GetString (SAVE_KEY);
+
+            return JsonUtility.FromJson<GameState> (json);
+        }
+
+        public void Save ()
+        {
+            string json = JsonUtility.ToJson (this);
+
+            PlayerPrefs.SetString (SAVE_KEY, json);
+
+            PlayerPrefs.Save ();
         }
     }
 }
